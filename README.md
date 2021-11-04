@@ -1,1 +1,3 @@
-# airdrop-claim
+# @popcorn/app
+
+Next.js Typescript application.
