@@ -17,19 +17,16 @@ const Navbar: React.FC = () => {
   } = context;
 
   return (
-    <nav className="flex shadow-md py-3 px-14 bg-white">
-      <div className="w-full flex flex-row items-center justify-between">
-        <div></div>
-        <button
-          className="w-28 p-1 flex flex-row items-center justify-center border border-gray-400 rounded hover:bg-indigo-400 hover:text-white"
-          onClick={() => activate(connectors.Injected)}
-        >
-          <p>Connect{account && "ed"}</p>
-          {account && (
-            <div className="w-2 h-2 bg-green-400 rounded-full ml-2" />
-          )}
-        </button>
-      </div>
+    <nav className="w-9/12 mx-auto flex flex-row items-center pt-12 justify-between">
+      <img src="/textLogo.png" className="h-12" />
+      <button
+        className="w-48 py-3 px-3 z-20 flex flex-row items-center justify-center rounded-lg cursor-pointer bg-blue-600 hover:bg-blue-700"
+        onClick={() => activate(connectors.Injected)}
+      >
+        <p className="text-xl font-medium text-white">
+          Connect{account ? "ed" : " Wallet"}
+        </p>
+      </button>
     </nav>
   );
 };
