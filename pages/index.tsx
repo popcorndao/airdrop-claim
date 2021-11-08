@@ -53,7 +53,7 @@ const IndexPage = () => {
           className="absolute bottom-20 right-60 2xl:right-112 z-10 2xl:w-4/12"
         />
         <img
-          src="/images/Yellow_cat.svg"
+          src="/images/Yellow_cat.png"
           alt="catYellow"
           className="absolute bottom-20 2xl:bottom-80 left-40 z-10 2xl:w-4/12"
         />
@@ -86,7 +86,7 @@ const IndexPage = () => {
           className="absolute right-0 bottom-5 md:bottom-20 md:right-5 lg:right-20 z-10 md:w-4/12 lg:w-3/12"
         />
         <img
-          src="/images/Yellow_cat.svg"
+          src="/images/Yellow_cat.png"
           alt="catYellow"
           className="absolute bottom-16 md:bottom-36 left-0 lg:left-18 w-8/12 lg:w-6/12 z-10"
         />
