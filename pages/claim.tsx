@@ -32,17 +32,17 @@ const ClaimPage = () => {
   return (
     <div className="w-full h-screen bg-primaryLight overflow-hidden">
       <Navbar />
-      <div className="w-full text-center mt-14 z-20">
-        <h1 className="text-4xl lg:text-5xl font-medium w-full lg:w-1/2 text-center mx-auto">
+      <div className="w-full text-center mt-14 md:mt-48 lg:mt-96 xl:mt-14 2xl:mt-80 z-20">
+        <h1 className="text-4xl md:text-5xl 2xl:text-6xl font-medium w-full lg:w-1/2 text-center mx-auto">
           Congratulations!
         </h1>
         <div className="mx-auto w-full lg:w-1/2 justify-center flex">
           <div className="z-20">
-            <p className="mt-8 text-2xl font-light z-10">
+            <p className="mt-8 text-2xl md:text-3xl 2xl:text-3xl font-light z-10">
               You are eligible to claim:
             </p>
             <div className="w-full mx-auto mt-4 px-8 py-4 border border-gray-800 rounded-lg bg-primaryLight">
-              <p className="text-4xl lg:text-6xl font-medium">10.000 POP</p>
+              <p className="text-4xl md:text-6xl 2xl:text-7xl font-medium">10.000 POP</p>
             </div>
             <button
               className="w-full mt-4 lg:mt-8 py-3 px-3 z-20 flex flex-row items-center justify-center rounded-lg cursor-pointer bg-blue-600 hover:bg-blue-700"
@@ -62,18 +62,18 @@ const ClaimPage = () => {
         <img
           src="/images/astronautCat.svg"
           alt="astronautCat"
-          className="absolute top-0 z-20"
+          className="absolute top-0 z-20 2xl:top-10"  
         />
       </div>
       <img
         src="/images/moonDetails.svg"
         alt="moonDetails"
-        className="absolute bottom-0 z-10"
+        className="absolute bottom-0 z-10 w-full"
       />
       <img
         src="/images/moon.svg"
         alt="moon"
-        className="absolute bottom-0 -z-10"
+        className="absolute bottom-0 -z-10 w-full"
       />
     </div>
   );

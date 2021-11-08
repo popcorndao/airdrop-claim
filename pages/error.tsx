@@ -20,13 +20,13 @@ const ErrorPage = () => {
   return (
     <div className="w-full h-screen bg-primaryLight">
       <Navbar />
-      <div className="w-full text-center mt-14 z-20">
-        <h1 className="text-3xl lg:text-4xl font-medium w-10/12 lg:w-1/2 text-center mx-auto">
+      <div className="w-full text-center mt-14 md:mt-32 lg:mt-36 xl:mt-18 2xl:mt-24 z-20">
+        <h1 className="text-3xl lg:text-4xl 2xl:text-6xl font-medium w-10/12 lg:w-1/2 text-center mx-auto">
           Ops, it seems that you have not participated in our airdrop.
         </h1>
         <div className="z-20 mx-auto w-10/12 lg:w-1/2 justify-center flex">
-          <div className="flex flex-wrap lg:flex-row z-20 mt-8">
-            <p className="text-2xl font-light text-center">
+          <div className="flex flex-wrap lg:flex-row z-20 mt-8 2xl:mt-12">
+            <p className="text-2xl 2xl:text-5xl font-light text-center">
               Follow our
               <a
                 className="font-normal cursor-pointer ml-2"
@@ -51,12 +51,12 @@ const ErrorPage = () => {
       <img
         src="/images/errorBackground.svg"
         alt="bgError"
-        className="hidden md:flex absolute bottom-0 -z-10"
+        className="hidden lg:flex absolute bottom-0 -z-10 w-full"
       />
       <img
         src="/images/mobileErrorBg.svg"
         alt="bgError"
-        className="absolute md:hidden bottom-0 -z-10"
+        className="absolute lg:hidden bottom-0 -z-10 w-full"
       />
     </div>
   );
