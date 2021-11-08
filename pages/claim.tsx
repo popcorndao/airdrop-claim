@@ -5,7 +5,7 @@ import { ContractContext } from "context/Web3/contracts";
 import { useRouter } from "next/router";
 import { useContext, useEffect } from "react";
 
-const ErrorPage = () => {
+const ClaimPage = () => {
   const router = useRouter();
   const context = useWeb3React<Web3Provider>();
   const { contract } = useContext(ContractContext);
@@ -21,6 +21,7 @@ const ErrorPage = () => {
     if (!account || !contract) {
       return;
     }
+    //TODO swap out with real condition
     if (true) {
       router.push("/claim");
     } else {
@@ -32,21 +33,22 @@ const ErrorPage = () => {
     <div className="w-full h-screen bg-primaryLight overflow-hidden">
       <Navbar />
       <div className="w-full text-center mt-14 z-20">
-        <h1 className="text-5xl font-medium w-1/2 text-center mx-auto">
+        <h1 className="text-4xl lg:text-5xl font-medium w-full lg:w-1/2 text-center mx-auto">
           Congratulations!
         </h1>
-        <div className="mx-auto w-1/2 justify-center flex">
+        <div className="mx-auto w-full lg:w-1/2 justify-center flex">
           <div className="z-20">
             <p className="mt-8 text-2xl font-light z-10">
               You are eligible to claim:
             </p>
-            <div className="mt-4 px-8 py-4 border border-gray-800 rounded-lg bg-primaryLight">
-              <p className="text-6xl font-medium">10.000 POP</p>
+            <div className="w-full mx-auto mt-4 px-8 py-4 border border-gray-800 rounded-lg bg-primaryLight">
+              <p className="text-4xl lg:text-6xl font-medium">10.000 POP</p>
             </div>
-            <button className="w-full mt-8 py-3 px-3 z-20 flex flex-row items-center justify-center rounded-lg cursor-pointer bg-blue-600 hover:bg-blue-700">
-              <p className="text-xl font-medium text-white">
-                Claim
-              </p>
+            <button
+              className="w-full mt-4 lg:mt-8 py-3 px-3 z-20 flex flex-row items-center justify-center rounded-lg cursor-pointer bg-blue-600 hover:bg-blue-700"
+              onClick={() => console.log("claimed")}
+            >
+              <p className="text-xl font-medium text-white">Claim</p>
             </button>
           </div>
         </div>
@@ -55,7 +57,7 @@ const ErrorPage = () => {
         <img
           src="/images/popcorn.svg"
           alt="popcorn"
-          className="absolute -top-100 z-10"
+          className="absolute -top-40 lg:-top-100 z-10"
         />
         <img
           src="/images/astronautCat.svg"
@@ -77,4 +79,4 @@ const ErrorPage = () => {
   );
 };
 
-export default ErrorPage;
+export default ClaimPage;
