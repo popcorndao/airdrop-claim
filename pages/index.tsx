@@ -3,10 +3,13 @@ import { useWeb3React } from "@web3-react/core";
 import Navbar from "components/NavBar";
 import { connectors } from "context/Web3/connectors";
 import { ContractContext } from "context/Web3/contracts";
+import { utils } from "ethers";
+import { promises as fs } from "fs";
 import { useRouter } from "next/router";
 import { useContext, useEffect } from "react";
+import { loadTree } from "utils/merkleTree";
 
-const IndexPage = () => {
+const IndexPage = ({ airdrops }) => {
   const router = useRouter();
   const context = useWeb3React<Web3Provider>();
   const { contract } = useContext(ContractContext);
@@ -22,10 +25,29 @@ const IndexPage = () => {
     if (!account || !contract) {
       return;
     }
-    if (true) {
-      router.push("/claim");
-    } else {
-      router.push("/error");
+    if (Object.keys(airdrops[0]).includes(account)) {
+      // its airdrops[0] hardcoded for now until we add more airdrops
+      // const proof = generateProof(airdrops[0],account)
+      // const isValidClaim = await merkleOrchard.verifyClaim(
+      //   "popAddress",
+      //   "distributor",
+      //   0,
+      //   account,
+      //   airdrops[0][account],
+      //   proof
+      // );
+
+      // const isClaimed = await merkleOrchard.isClaimed(
+      //   "popAddress",
+      //   "distributor",
+      //   0,
+      //   account
+      // );
+      // if ( isValidClaim && !isClaimed ) {
+      //   router.push("/claim");
+      // } else {
+      //   router.push("/error");
+      // }
     }
   }, [account]);
 
@@ -99,5 +121,17 @@ const IndexPage = () => {
     </>
   );
 };
+
+export async function getStaticProps() {
+  const AIRDROP_DIR = "./public/airdrops/";
+  const filenames = await fs.readdir(AIRDROP_DIR);
+  const airdrops = await Promise.all(
+    filenames.map(async (filename) => {
+      const file = await fs.readFile(AIRDROP_DIR + filename, "utf8");
+      return JSON.parse(file);
+    })
+  );
+  return { props: { airdrops: airdrops } };
+}
 
 export default IndexPage;

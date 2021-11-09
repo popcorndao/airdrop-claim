@@ -2,10 +2,11 @@ import { Web3Provider } from "@ethersproject/providers";
 import { useWeb3React } from "@web3-react/core";
 import Navbar from "components/NavBar";
 import { ContractContext } from "context/Web3/contracts";
+import { promises as fs } from "fs";
 import { useRouter } from "next/router";
 import { useContext, useEffect } from "react";
 
-const ErrorPage = () => {
+const ErrorPage = ({ airdrops }) => {
   const router = useRouter();
   const context = useWeb3React<Web3Provider>();
   const { contract } = useContext(ContractContext);
@@ -16,6 +17,17 @@ const ErrorPage = () => {
       router.replace(window.location.pathname);
     }
   }, [router.pathname]);
+
+  useEffect(() => {
+    if (!account || !contract) {
+      return;
+    }
+    if (Object.keys(airdrops[0]).includes(account)) {
+      router.push("/claim");
+    } else {
+      router.push("/error");
+    }
+  }, [account]);
 
   return (
     <div className="w-full h-screen bg-primaryLight">
@@ -61,5 +73,17 @@ const ErrorPage = () => {
     </div>
   );
 };
+
+export async function getStaticProps() {
+  const AIRDROP_DIR = "./public/airdrops/";
+  const filenames = await fs.readdir(AIRDROP_DIR);
+  const airdrops = await Promise.all(
+    filenames.map(async (filename) => {
+      const file = await fs.readFile(AIRDROP_DIR + filename, "utf8");
+      return JSON.parse(file);
+    })
+  );
+  return { props: { airdrops: airdrops } };
+}
 
 export default ErrorPage;
