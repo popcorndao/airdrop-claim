@@ -1,17 +1,23 @@
 import { Web3Provider } from "@ethersproject/providers";
+import { parseEther } from "@ethersproject/units";
 import { useWeb3React } from "@web3-react/core";
 import Navbar from "components/NavBar";
+import { networkMap } from "context/Web3/connectors";
 import { ContractContext } from "context/Web3/contracts";
 import { promises as fs } from "fs";
 import { useRouter } from "next/router";
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
+import toast, { Toaster } from "react-hot-toast";
+import checkEligibilityAndRoute from "utils/checkEligibilityAndRoute";
 import generateProof from "utils/generateProof";
+import getRequiredAddresses from "utils/getRequiredAddresses";
 
 const ClaimPage = ({ airdrops }) => {
   const router = useRouter();
   const context = useWeb3React<Web3Provider>();
   const { contract } = useContext(ContractContext);
   const { library, account, activate, active } = context;
+  const [amountClaimable, setAmountClaimable] = useState<number>(0);
 
   useEffect(() => {
     if (typeof window !== "undefined" && window.location.pathname !== "/") {
@@ -24,31 +30,57 @@ const ClaimPage = ({ airdrops }) => {
       return;
     }
     if (Object.keys(airdrops[0]).includes(account)) {
-      router.push("/claim");
+      setAmountClaimable(Number(airdrops[0][account]));
+      // its airdrops[0] hardcoded for now until we add more airdrops
+      checkEligibilityAndRoute(contract, router, airdrops[0], account);
     } else {
       router.push("/error");
     }
   }, [account]);
 
   async function claimAirdrop(): Promise<void> {
+    toast.loading("Claiming airdrop...");
+    const requiredAddresses = getRequiredAddresses(
+      networkMap[process.env.CHAIN_ID]
+    );
     const proof = generateProof(airdrops[0], account);
-    // await merkleOrchard.claimDistributions(
-    //   account,
-    //   [
-    //     {
-    //       distributionId: 0,
-    //       balance: airdrops[0][account],
-    //       distributor: "distributor",
-    //       tokenIndex: 0,
-    //       merkleProof: proof,
-    //     },
-    //   ],
-    //   ["popAddress"]
-    // );
+    await contract
+      .connect(library.getSigner())
+      .claimDistributions(
+        account,
+        [
+          {
+            distributionId: 0,
+            balance: parseEther(airdrops[0][account]),
+            distributor: requiredAddresses.distributor,
+            tokenIndex: 0,
+            merkleProof: proof,
+          },
+        ],
+        [requiredAddresses.pop]
+      )
+      .then((res) =>
+        res.wait().then((res) => {
+          toast.dismiss();
+          toast.success("Claimed Airdrop!");
+          setAmountClaimable(0);
+        })
+      )
+      .catch((err) => {
+        if (
+          err.message ===
+          "MetaMask Tx Signature: User denied transaction signature."
+        ) {
+          toast.error("Transaction was canceled");
+        } else {
+          toast.error(err.message.split("'")[1]);
+        }
+      });
   }
 
   return (
     <div className="w-full h-screen bg-primaryLight overflow-hidden">
+      <Toaster position="top-right" />
       <Navbar />
       <div className="w-full text-center mt-14 md:mt-48 lg:mt-96 xl:mt-14 2xl:mt-80 z-20">
         <h1 className="text-4xl md:text-5xl 2xl:text-6xl font-medium w-full lg:w-1/2 text-center mx-auto">
@@ -61,7 +93,7 @@ const ClaimPage = ({ airdrops }) => {
             </p>
             <div className="w-full mx-auto mt-4 px-8 py-4 border border-gray-800 rounded-lg bg-primaryLight">
               <p className="text-4xl md:text-6xl 2xl:text-7xl font-medium">
-                {airdrops[0][account]} POP
+                {amountClaimable > 0 ? airdrops[0][account] : 0} POP
               </p>
             </div>
             <button

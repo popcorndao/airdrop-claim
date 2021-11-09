@@ -5,6 +5,7 @@ import { ContractContext } from "context/Web3/contracts";
 import { promises as fs } from "fs";
 import { useRouter } from "next/router";
 import { useContext, useEffect } from "react";
+import checkEligibilityAndRoute from "utils/checkEligibilityAndRoute";
 
 const ErrorPage = ({ airdrops }) => {
   const router = useRouter();
@@ -23,7 +24,8 @@ const ErrorPage = ({ airdrops }) => {
       return;
     }
     if (Object.keys(airdrops[0]).includes(account)) {
-      router.push("/claim");
+      // its airdrops[0] hardcoded for now until we add more airdrops
+      checkEligibilityAndRoute(contract, router, airdrops[0], account);
     } else {
       router.push("/error");
     }

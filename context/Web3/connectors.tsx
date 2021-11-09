@@ -3,7 +3,7 @@ import { NetworkConnector } from '@web3-react/network-connector';
 
 export const networkMap = {
   1: 'mainnet',
-  4: 'Rinkeby',
+  4: 'rinkeby',
   1337: 'localhost',
   31337: 'localhost',
 };

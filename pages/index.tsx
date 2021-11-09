@@ -3,11 +3,10 @@ import { useWeb3React } from "@web3-react/core";
 import Navbar from "components/NavBar";
 import { connectors } from "context/Web3/connectors";
 import { ContractContext } from "context/Web3/contracts";
-import { utils } from "ethers";
 import { promises as fs } from "fs";
 import { useRouter } from "next/router";
 import { useContext, useEffect } from "react";
-import { loadTree } from "utils/merkleTree";
+import checkEligibilityAndRoute from "../utils/checkEligibilityAndRoute";
 
 const IndexPage = ({ airdrops }) => {
   const router = useRouter();
@@ -27,27 +26,9 @@ const IndexPage = ({ airdrops }) => {
     }
     if (Object.keys(airdrops[0]).includes(account)) {
       // its airdrops[0] hardcoded for now until we add more airdrops
-      // const proof = generateProof(airdrops[0],account)
-      // const isValidClaim = await merkleOrchard.verifyClaim(
-      //   "popAddress",
-      //   "distributor",
-      //   0,
-      //   account,
-      //   airdrops[0][account],
-      //   proof
-      // );
-
-      // const isClaimed = await merkleOrchard.isClaimed(
-      //   "popAddress",
-      //   "distributor",
-      //   0,
-      //   account
-      // );
-      // if ( isValidClaim && !isClaimed ) {
-      //   router.push("/claim");
-      // } else {
-      //   router.push("/error");
-      // }
+      checkEligibilityAndRoute(contract, router, airdrops[0], account);
+    } else {
+      router.push("/error");
     }
   }, [account]);
 
