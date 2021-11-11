@@ -82,26 +82,26 @@ const ClaimPage = ({ airdrops }) => {
     <div className="w-full h-screen bg-primaryLight overflow-hidden">
       <Toaster position="top-right" />
       <Navbar />
-      <div className="w-full text-center mt-14 md:mt-48 lg:mt-96 xl:mt-14 2xl:mt-80 z-20">
-        <h1 className="text-4xl md:text-5xl 2xl:text-6xl font-medium w-full lg:w-1/2 text-center mx-auto">
+      <div className="w-full text-center mt-14 md:mt-48 lg:mt-8 xl:mt-14 2xl:mt-40 z-20">
+        <h1 className="text-4xl md:text-5xl xl:text-6xl 2xl:text-7xl font-medium w-full lg:w-1/2 text-center mx-auto">
           Congratulations!
         </h1>
         <div className="mx-auto w-full lg:w-1/2 justify-center flex">
           <div className="z-20">
-            <p className="mt-8 text-2xl md:text-3xl 2xl:text-3xl font-light z-10">
+            <p className="mt-8 2xl:mt-16 text-2xl xl:text-3xl 2xl:text-4xl font-light z-10">
               You are eligible to claim:
             </p>
-            <div className="w-full mx-auto mt-4 px-8 py-4 border border-gray-800 rounded-lg bg-primaryLight">
-              <p className="text-4xl md:text-6xl 2xl:text-7xl font-medium">
+            <div className="w-full mx-auto mt-4 2xl:mt-12 px-8 py-4 border border-gray-800 rounded-lg bg-primaryLight">
+              <p className="text-4xl md:text-5xl 2xl:text-7xl font-medium">
                 {amountClaimable > 0 ? airdrops[0][account] : 0} POP
               </p>
             </div>
             <button
-              className="w-full mt-4 lg:mt-8 py-3 px-3 z-20 flex flex-row items-center justify-center rounded-lg cursor-pointer bg-blue-600 hover:bg-blue-700"
+              className="w-full mt-4 lg:mt-8 py-3 2xl:py-4 px-3 z-20 flex flex-row items-center justify-center rounded-lg cursor-pointer bg-blue-600 hover:bg-blue-700"
               onClick={claimAirdrop}
               disabled={!account}
             >
-              <p className="text-xl font-medium text-white">Claim</p>
+              <p className="text-xl 2xl:text-2xl font-medium text-white">Claim</p>
             </button>
           </div>
         </div>
@@ -110,12 +110,12 @@ const ClaimPage = ({ airdrops }) => {
         <img
           src="/images/popcorn.svg"
           alt="popcorn"
-          className="absolute -top-40 lg:-top-100 z-10"
+          className="absolute -top-40 lg:-top-100 2xl:-top-104 z-10"
         />
         <img
           src="/images/astronautCat.svg"
           alt="astronautCat"
-          className="absolute top-0 z-20 2xl:top-10"
+          className="absolute top-0 z-20 lg:w-4/12 2xl:w-5/12 2xl:top-10"
         />
       </div>
       <img

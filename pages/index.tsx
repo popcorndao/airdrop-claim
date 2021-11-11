@@ -35,11 +35,11 @@ const IndexPage = ({ airdrops }) => {
   return (
     <>
       {/* Desktop + Large Desktop */}
-      <div className="hidden xl:flex flex-col w-full h-screen bg-primaryLight">
+      <div className="hidden lg:flex flex-col w-full h-screen bg-primaryLight">
         <Navbar />
         <div className="w-9/12 mx-auto mt-16 2xl:mt-40">
-          <h1 className="text-8xl font-light w-1/2">Claim your Airdrop Now!</h1>
-          <p className="mt-8 text-2xl 2xl:text-3xl w-5/12 ">
+          <h1 className="text-6xl xl:text-8xl font-light w-5/12 xl:w-1/2 2xl:w-4/12">Claim your Airdrop Now!</h1>
+          <p className="mt-4 xl:mt-8 text-2xl 2xl:text-4xl w-6/12 2xl:w-5/12 font-light">
             Awesome that you have participated in our Airdrop. Now is the time
             to claim your eligible token by connecting your{" "}
             <span className="font-medium">Metamask wallet</span>.
@@ -48,17 +48,17 @@ const IndexPage = ({ airdrops }) => {
         <img
           src="/images/Mint blue cat hands up.svg"
           alt="catHandsUp"
-          className="absolute right-40 bottom-60 2xl:bottom-80 z-10 2xl:w-5/12"
+          className="absolute right-28 xl:right-40 bottom-60 xl:bottom-60 2xl:bottom-80 z-10 w-5/12"
         />
         <img
           src="/images/Mint blue cat with umbrella.svg"
           alt="catUmbrella"
-          className="absolute bottom-20 right-60 2xl:right-112 z-10 2xl:w-4/12"
+          className="absolute bottom-20 right-48 xl:right-60 2xl:right-112 z-10 w-4/12 2xl:w-4/12"
         />
         <img
           src="/images/Yellow_cat.png"
           alt="catYellow"
-          className="absolute bottom-20 2xl:bottom-80 left-40 z-10 2xl:w-4/12"
+          className="absolute bottom-20 2xl:bottom-80 left-20 xl:left-40 z-10 w-5/12 2xl:w-4/12"
         />
         <img
           src="/images/Background_ hill.svg"
@@ -67,7 +67,7 @@ const IndexPage = ({ airdrops }) => {
         />
       </div>
       {/* Mobile + Tablet */}
-      <div className="w-full h-screen xl:hidden bg-primaryLight">
+      <div className="w-full h-screen lg:hidden bg-primaryLight">
         <Navbar />
         <div className="relative w-10/12 text-center mx-auto mt-12 md:mt-40 lg:mt-56 z-20">
           <h1 className="text-5xl font-light">Claim your Airdrop Now!</h1>

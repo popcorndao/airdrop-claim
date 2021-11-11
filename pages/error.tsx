@@ -34,7 +34,7 @@ const ErrorPage = ({ airdrops }) => {
   return (
     <div className="w-full h-screen bg-primaryLight">
       <Navbar />
-      <div className="w-full text-center mt-14 md:mt-32 lg:mt-36 xl:mt-18 2xl:mt-24 z-20">
+      <div className="w-full text-center mt-14 md:mt-32 lg:mt-8 xl:mt-18 2xl:mt-24 z-20">
         <h1 className="text-3xl lg:text-4xl 2xl:text-6xl font-medium w-10/12 lg:w-1/2 text-center mx-auto">
           Ops, it seems that you have not participated in our airdrop.
         </h1>

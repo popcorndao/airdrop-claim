@@ -19,13 +19,13 @@ const Navbar: React.FC = () => {
   return (
     <>
       {/* Desktop + Large Desktop */}
-      <nav className="w-9/12 mx-auto hidden lg:flex flex-row items-center pt-12 justify-between">
-        <img src="/textLogo.png" className="h-12" />
+      <nav className="w-9/12 mx-auto hidden lg:flex flex-row items-center pt-6 xl:pt-12 justify-between">
+        <img src="/textLogo.png" className="h-10 xl:h-12" />
         <button
-          className="w-48 py-3 px-3 z-20 flex flex-row items-center justify-center rounded-lg cursor-pointer bg-blue-600 hover:bg-blue-700"
+          className="w-40 xl:w-48 py-2 xl:py-3 px-3 z-20 flex flex-row items-center justify-center rounded-lg cursor-pointer bg-blue-600 hover:bg-blue-700"
           onClick={() => activate(connectors.Injected)}
         >
-          <p className="text-xl font-medium text-white">
+          <p className="text-lg xl:text-xl font-medium text-white">
             Connect{account ? "ed" : " Wallet"}
           </p>
         </button>

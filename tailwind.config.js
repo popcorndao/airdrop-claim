@@ -13,11 +13,11 @@ module.exports = {
       'md': '768px',
       // => @media (min-width: 768px) { ... }
 
-      'lg': '1024px',
-      // => @media (min-width: 1024px) { ... }
+      'lg': '1380px',
+      // => @media (min-width: 1380px) { ... }
 
-      'xl': '1280px',
-      // => @media (min-width: 1280px) { ... }
+      'xl': '1840px',
+      // => @media (min-width: 1840px) { ... }
 
       '2xl': '2560px',
       // => @media (min-width: 1536px) { ... }
